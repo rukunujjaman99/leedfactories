@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LEED Factories | Discover. Explore. Verify Sustainable Factories.</title>
+    <meta name="description" content="Discover LEED-certified factories, scorecards and immersive 360° factory tours.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-xl fixed-top" id="nav">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <i class="bi bi-buildings-fill"></i> LEED FACTORIES </a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu" aria-label="Menu">
+          <i class="bi bi-list"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="factories.html">Factories</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="projects.html">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="leed.html">LEED</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tours.html">360° Tours</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="scorecard.html">Scorecard</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">More</a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="news.html">News</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="resources.html">Resources</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="about.html">About</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="contact.html">Contact</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-3 nav-right">
+            <button class="nav-link btn p-0" id="theme" aria-label="Toggle dark mode">
+              <i class="bi bi-moon"></i>
+            </button>
+            <a href="factories.html" class="nav-link" aria-label="Search">
+              <i class="bi bi-search"></i>
+            </a>
+            <a href="login.html" class="nav-link">Login</a>
+            <a href="register.html" class="btn btn-gold">Register</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <header id="home" class="hero">
+      <div class="slides">
+        <div class="slide ph ph-1 on"></div>
+        <div class="slide ph ph-8"></div>
+        <div class="slide ph ph-9"></div>
+      </div>
+      <button class="sl-ctl sl-p" id="slP" aria-label="Previous slide">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+      <button class="sl-ctl sl-n" id="slN" aria-label="Next slide">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+      <div class="dots" id="dots"></div>
+      <div class="container position-relative">
+        <span class="badge-pill">GREEN FACTORIES • LEED • SUSTAINABILITY</span>
+        <h1 id="heroH">Discover the Future of Sustainable Factories</h1>
+        <p class="lead" id="heroP">Explore sustainable factories, LEED projects, environmental performance and immersive factory experiences from one platform.</p>
+        <div class="d-flex flex-wrap gap-3 mb-4">
+          <a href="#factories" class="btn btn-gold btn-lg">Explore Factories</a>
+          <a href="tours.html" class="btn btn-outline-light btn-lg">Explore 360° Tours</a>
+        </div>
+        <form class="search-box" id="heroSearch">
+          <div class="row g-2">
+            <div class="col-12">
+              <input class="form-control form-control-lg" id="heroQ" placeholder="Search factories, projects, LEED certification..." aria-label="Search">
+            </div>
+            <div class="col-6 col-md-3">
+              <select class="form-select" id="hCountry">
+                <option value="">Location</option>
+                <option>Bangladesh</option>
+                <option>Vietnam</option>
+                <option>India</option>
+                <option>Turkey</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-3">
+              <select class="form-select" id="hInd">
+                <option value="">Industry</option>
+                <option>Textile</option>
+                <option>Garments</option>
+                <option>Home Textile</option>
+                <option>Manufacturing</option>
+                <option>Electronics</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-3">
+              <select class="form-select" id="hLevel">
+                <option value="">LEED Level</option>
+                <option>Certified</option>
+                <option>Silver</option>
+                <option>Gold</option>
+                <option>Platinum</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-3">
+              <button class="btn btn-green w-100 h-100" type="submit">
+                <i class="bi bi-search"></i> Search </button>
+            </div>
+          </div>
+        </form>
+        <div class="row g-3 stats mt-4">
+          <div class="col-6 col-md-3">
+            <b data-count="250">0</b>+ <span>Green Factories</span>
+          </div>
+          <div class="col-6 col-md-3">
+            <b data-count="120">0</b>+ <span>LEED Projects</span>
+          </div>
+          <div class="col-6 col-md-3">
+            <b data-count="80">0</b>+ <span>360° Tours</span>
+          </div>
+          <div class="col-6 col-md-3">
+            <b data-count="35">0</b>+ <span>Countries</span>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section id="wmap" class="sec">
+      <div class="container">
+        <h2>Where Our Factories Are</h2>
+        <p class="sub">A live map of verified factories. Pick a rating, search, or select a pin to see details.</p>
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="mapwrap" id="mapWrap">
+              <div id="lmap"></div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="d-flex flex-wrap gap-2 mb-3" id="mChips"></div>
+            <input id="mQ" class="form-control mb-3" placeholder="Search city or factory" aria-label="Search map">
+            <div class="mlist" id="mList"></div>
+            <small id="mCount" class="text-muted d-block"></small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <main>
+      <section id="factories" class="sec">
+        <div class="container">
+          <h2>Explore Sustainable Factories</h2>
+          <p class="sub">Discover factories combining advanced manufacturing with sustainable practices.</p>
+          <div class="row g-3 mb-4 align-items-center">
+            <div class="col-lg-4">
+              <input id="fSearch" class="form-control" placeholder="Search by name or location" aria-label="Search factories">
+            </div>
+            <div class="col-lg-8 d-flex flex-wrap gap-2" id="fChips">
+              <button class="chip active" data-t="">All</button>
+              <button class="chip" data-t="Textile">Textile</button>
+              <button class="chip" data-t="Garments">Garments</button>
+              <button class="chip" data-t="Home Textile">Home Textile</button>
+              <button class="chip" data-t="Manufacturing">Manufacturing</button>
+              <button class="chip" data-t="Electronics">Electronics</button>
+              <button class="chip" data-t="Other">Other</button>
+            </div>
+            <div class="col-6 col-lg-3">
+              <select id="fCountry" class="form-select">
+                <option value="">Country</option>
+                <option>Bangladesh</option>
+                <option>Vietnam</option>
+                <option>India</option>
+                <option>Turkey</option>
+              </select>
+            </div>
+            <div class="col-6 col-lg-3">
+              <select id="fLevel" class="form-select">
+                <option value="">LEED Level</option>
+                <option>Certified</option>
+                <option>Silver</option>
+                <option>Gold</option>
+                <option>Platinum</option>
+              </select>
+            </div>
+            <div class="col-6 col-lg-3">
+              <select id="fScore" class="form-select">
+                <option value="0">Any score</option>
+                <option value="70">70%+</option>
+                <option value="80">80%+</option>
+                <option value="90">90%+</option>
+              </select>
+            </div>
+            <div class="col-6 col-lg-3">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="f360">
+                <label class="form-check-label" for="f360">360° available</label>
+              </div>
+            </div>
+          </div>
+          <div class="row g-4" id="fGrid"></div>
+          <p id="fEmpty" class="text-center text-muted d-none py-5">No factories match these filters. Clear a filter to see more.</p>
+         
+        </div>
+      </section>
+
+      <section id="journey" class="sec alt">
+        <div class="container">
+          <h2>How It Works</h2>
+          <p class="sub">Seven steps from finding a factory to checking its proof. Select a step, or let it play.</p>
+          <div class="hw">
+            <div class="hwline">
+              <i id="hwFill"></i>
+            </div>
+            <ol class="hwsteps" id="hwS"></ol>
+          </div>
+          <div class="card-x hwpanel" id="hwP"></div>
+          <div class="d-flex gap-2 mt-3">
+            <button class="btn btn-outline-success" id="hwPrev" aria-label="Previous step">
+              <i class="bi bi-arrow-left"></i>
+            </button>
+            <button class="btn btn-outline-success" id="hwNext" aria-label="Next step">
+              <i class="bi bi-arrow-right"></i>
+            </button>
+            <button class="btn btn-outline-success ms-auto" id="hwPlay" aria-label="Pause">
+              <i class="bi bi-pause-fill"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="hproj" class="sec">
+        <div class="container">
+          <div class="d-flex justify-content-between align-items-end flex-wrap">
+            <div>
+              <h2>Latest LEED Projects</h2>
+              <p class="sub">Recently registered and certified projects.</p>
+            </div>
+            <a href="projects.html" class="btn btn-outline-success mb-4">All projects</a>
+          </div>
+          <div class="row g-4" id="hpGrid"></div>
+        </div>
+      </section>
+
+      <section id="services" class="sec alt">
+        <div class="container">
+          <h2>Our Services</h2>
+          <p class="sub">Help for factories that want to earn, show and keep a LEED rating.</p>
+          <div class="row g-4" id="svGrid"></div>
+        </div>
+      </section>
+
+      <section id="packages" class="sec">
+        <div class="container text-center">
+          <h2>Packages</h2>
+          <p class="sub mx-auto">Pick a listing plan. Switch to yearly billing to save two months.</p>
+          <div class="form-check form-switch d-inline-flex gap-2 mb-4">
+            <input class="form-check-input" type="checkbox" id="bill">
+            <label class="form-check-label" for="bill">Bill yearly</label>
+          </div>
+          <div class="row g-4 text-start" id="pkGrid"></div>
+        </div>
+      </section>
+
+      <section id="clients" class="sec alt">
+        <div class="container">
+          <h2>Trusted by Factories and Buyers</h2>
+        </div>
+        <div class="marq mt-4">
+          <div class="track" id="clTrack"></div>
+        </div>
+      </section>
+
+      <section id="why" class="sec">
+        <div class="container">
+          <h2>Why Become a Client</h2>
+          <p class="sub">Choose who you are to see what changes once a factory's data is verified and public.</p>
+          <div class="audtabs" id="whyTabs"></div>
+          <div class="why-panel card-x" id="whyPanel"></div>
+        </div>
+      </section>
+
+      <section id="testi" class="sec dark tsec">
+        <div class="container">
+          <h2>What Clients Say</h2>
+          <p class="sub text-white-50">Factories and buyers describe what changed after verification. Select a story, filter by role, or use the arrow keys.</p>
+          <div class="tsum2" id="tsum"></div>
+          <div class="d-flex flex-wrap gap-2 mb-4" id="tChips"></div>
+          <div class="row g-4">
+            <div class="col-lg-7">
+              <div class="tspot" id="tSpot" tabindex="0" aria-live="polite"></div>
+            </div>
+            <div class="col-lg-5">
+              <div class="twall" id="tWall"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="latest" class="sec">
+        <div class="container">
+          <div class="d-flex justify-content-between align-items-end flex-wrap">
+            <div>
+              <h2>Latest News</h2>
+              <p class="sub">Updates from the platform and the green manufacturing sector.</p>
+            </div>
+            <a href="news.html" class="btn btn-outline-success mb-4">All news</a>
+          </div>
+          <div class="d-flex flex-wrap gap-2 mb-4" id="nChips"></div>
+          <div class="row g-4" id="nGrid"></div>
+        </div>
+      </section>
+
+      <section id="fotm" class="sec">
+        <div class="container">
+          <h2>LEED Factory of the Month</h2>
+          <div class="row g-0 fo">
+            <div class="col-lg-6 ph ph-6 fo-img" role="img" aria-label="Sustainable Apparel Factory"></div>
+            <div class="col-lg-6 p-4 p-lg-5">
+              <span class="lvl lvl-Platinum">LEED Platinum</span>
+              <h3 class="mt-3">Sustainable Apparel Factory</h3>
+              <p class="meta">
+                <i class="bi bi-geo-alt"></i> Hanoi, Vietnam · EcoWear Co.
+              </p>
+              <p>Its rooftop solar and closed-loop dye house took it from Gold to Platinum this year.</p>
+              <div class="small mb-1">Renewable energy 81%</div>
+              <div class="bar mb-2">
+                <i data-w="81"></i>
+              </div>
+              <div class="small mb-1">Water reuse 74%</div>
+              <div class="bar mb-2">
+                <i data-w="74"></i>
+              </div>
+              <div class="small mb-1">Waste recycling 95%</div>
+              <div class="bar mb-4">
+                <i data-w="95"></i>
+              </div>
+              <a href="factory-details.html?id=1" class="btn btn-green me-2">View Factory</a>
+              <a href="tours.html" class="btn btn-outline-success">Start 360° Tour</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="vtour" class="sec dark">
+        <div class="container">
+          <h2>Take a Virtual Tour</h2>
+          <p class="sub text-white-50">Watch the walkthrough, or jump straight to a stop.</p>
+          <div class="row g-4">
+            <div class="col-lg-8">
+              <video id="tv" class="w-100 rounded-4" controls preload="metadata" poster="assets/images/tour-poster.jpg">
+                <source src="assets/videos/virtual-tour.mp4" type="video/mp4">Your browser cannot play this video.
+              </video>
+            </div>
+            <div class="col-lg-4">
+              <div class="chap" id="chap"></div>
+              <a href="tours.html" class="btn btn-gold mt-3 w-100">Open the interactive 360° tours</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="mgmt" class="sec">
+        <div class="container">
+          <h2>Meet the Management</h2>
+          <div class="row g-4" id="mgGrid"></div>
+        </div>
+      </section>
+
+      <section id="sidx" class="sec alt">
+        <div class="container">
+          <h2>Sustainable Index</h2>
+          <p class="sub">Choose a factory to see its five-pillar index.</p>
+          <div class="d-flex flex-wrap gap-2 mb-4" id="siChips"></div>
+          <div class="row g-4 align-items-center">
+            <div class="col-md-4 text-center">
+              <div class="ring" id="siRing" style="--p:0">
+                <div>
+                  <b id="siScore">0</b>
+                  <span>Index / 100</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div id="siBars"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="finfo" class="sec">
+        <div class="container">
+          <h2>Factory Information</h2>
+          <p class="sub">Select a column heading to sort.</p>
+          <input id="fiQ" class="form-control mb-3" style="max-width:360px" placeholder="Filter factories" aria-label="Filter factories">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle" id="fiTbl">
+              <thead>
+                <tr>
+                  <th>
+                    <button data-k="0">Factory</button>
+                  </th>
+                  <th>
+                    <button data-k="2">Location</button>
+                  </th>
+                  <th>
+                    <button data-k="4">Industry</button>
+                  </th>
+                  <th>
+                    <button data-k="5">LEED</button>
+                  </th>
+                  <th>
+                    <button data-k="6">Score</button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="fiBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="leed" class="sec">
+        <div class="container">
+          <h2>LEED Certification</h2>
+          <p class="sub">Verified under the LEED v4 rating system for building design and construction.</p>
+          <div class="row g-4 align-items-center">
+            <div class="col-md-5 text-center">
+              <div class="ring" id="ring" style="--p:0">
+                <div>
+                  <b>68 / 110</b>
+                  <span>LEED Gold</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="row g-3" id="leedInfo"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="sec">
+        <div class="container">
+          <div class="row g-5">
+            <div class="col-lg-5">
+              <h2>Contact</h2>
+              <p class="sub">Questions about a factory listing or LEED verification? Write to us.</p>
+              <p>
+                <i class="bi bi-envelope"></i> hello@leedfactories.example
+              </p>
+              <p>
+                <i class="bi bi-telephone"></i> +880 1234 567890
+              </p>
+              <p>
+                <i class="bi bi-geo-alt"></i> Dhaka, Bangladesh
+              </p>
+            </div>
+            <div class="col-lg-7">
+              <form id="contactForm" class="row g-3 needs-validation" novalidate>
+                <div class="col-md-6">
+                  <label class="form-label" for="cn">Name</label>
+                  <input id="cn" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="ce">Email</label>
+                  <input id="ce" type="email" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="cc">Company</label>
+                  <input id="cc" class="form-control">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="cs">Subject</label>
+                  <input id="cs" class="form-control" required>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="cm">Message</label>
+                  <textarea id="cm" rows="4" class="form-control" required></textarea>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-green btn-lg">Send Message</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+    <footer class="foot">
+      <div class="container">
+        <div class="fcta">
+          <div>
+            <h3>Ready to verify your factory?</h3>
+            <p class="mb-0">Create an account, publish your scorecard and open your site to buyers.</p>
+          </div>
+          <div class="d-flex gap-2 flex-wrap">
+            <a href="register.html" class="btn btn-gold btn-lg">Get started</a>
+            <a href="contact.html" class="btn btn-outline-light btn-lg">Talk to us</a>
+          </div>
+        </div>
+        <div class="fstats">
+          <div>
+            <b data-count="250">0</b>+ <span>Green factories</span>
+          </div>
+          <div>
+            <b data-count="120">0</b>+ <span>LEED projects</span>
+          </div>
+          <div>
+            <b data-count="80">0</b>+ <span>360° tours</span>
+          </div>
+          <div>
+            <b data-count="35">0</b>+ <span>Countries</span>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-12 col-lg-4">
+            <a class="fbrand" href="index.html">
+              <i class="bi bi-buildings-fill"></i> LEED FACTORIES </a>
+            <p class="mt-3">Discover. Explore. Verify Sustainable Factories.</p>
+            <div class="soc2">
+              <a href="#" aria-label="LinkedIn">
+                <i class="bi bi-linkedin"></i>
+              </a>
+              <a href="#" aria-label="X">
+                <i class="bi bi-twitter-x"></i>
+              </a>
+              <a href="#" aria-label="YouTube">
+                <i class="bi bi-youtube"></i>
+              </a>
+              <a href="#" aria-label="Facebook">
+                <i class="bi bi-facebook"></i>
+              </a>
+            </div>
+            <form id="news" class="nlf mt-4" novalidate>
+              <label for="nle" class="small">Get monthly updates</label>
+              <div class="d-flex gap-2">
+                <input id="nle" type="email" required class="form-control" placeholder="Your email">
+                <button class="btn btn-gold">Subscribe</button>
+              </div>
+              <div class="invalid-feedback">Enter a valid email address.</div>
+            </form>
+          </div>
+          <div class="col-6 col-lg-2 fcol">
+            <h6 tabindex="0" role="button">Platform <i class="bi bi-chevron-down"></i>
+            </h6>
+            <ul class="list-unstyled">
+              <li>
+                <a href="factories.html">Factories</a>
+              </li>
+              <li>
+                <a href="projects.html">Projects</a>
+              </li>
+              <li>
+                <a href="leed.html">LEED</a>
+              </li>
+              <li>
+                <a href="tours.html">360° Tours</a>
+              </li>
+              <li>
+                <a href="scorecard.html">Scorecard</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6 col-lg-2 fcol">
+            <h6 tabindex="0" role="button">Resources <i class="bi bi-chevron-down"></i>
+            </h6>
+            <ul class="list-unstyled">
+              <li>
+                <a href="resources.html">Articles</a>
+              </li>
+              <li>
+                <a href="news.html">News</a>
+              </li>
+              <li>
+                <a href="resources.html">Reports</a>
+              </li>
+              <li>
+                <a href="resources.html">Guides</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6 col-lg-2 fcol">
+            <h6 tabindex="0" role="button">Company <i class="bi bi-chevron-down"></i>
+            </h6>
+            <ul class="list-unstyled">
+              <li>
+                <a href="about.html">About</a>
+              </li>
+              <li>
+                <a href="contact.html">Contact</a>
+              </li>
+              <li>
+                <a href="#">Privacy</a>
+              </li>
+              <li>
+                <a href="#">Terms</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6 col-lg-2 fcol">
+            <h6 tabindex="0" role="button">Account <i class="bi bi-chevron-down"></i>
+            </h6>
+            <ul class="list-unstyled">
+              <li>
+                <a href="login.html">Login</a>
+              </li>
+              <li>
+                <a href="register.html">Register</a>
+              </li>
+              <li>
+                <a href="dashboard.html">Dashboard</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="fbot">
+          <span>Copyright © 2026 LEED Factories</span>
+          <span>
+            <a href="#">Privacy</a> · <a href="#">Terms</a> · <button id="ftTop" class="btn btn-sm btn-outline-light">Back to top <i class="bi bi-arrow-up"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </footer>
+    <button id="top" aria-label="Back to top">
+      <i class="bi bi-arrow-up"></i>
+    </button>
+    <div class="modal fade" id="hsModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="hsT"></h5>
+            <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p id="hsD"></p>
+            <p>
+              <b>Sustainability:</b>
+              <span id="hsS"></span>
+            </p>
+            <p>
+              <b>Related LEED credit:</b>
+              <span id="hsC"></span>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-green" id="hsE">View Evidence</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="lbModal" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark text-white">
+          <div class="ph lb" id="lbImg"></div>
+          <div class="modal-footer justify-content-between">
+            <button class="btn btn-outline-light" id="lbP">
+              <i class="bi bi-chevron-left"></i>
+            </button>
+            <span id="lbT"></span>
+            <button class="btn btn-outline-light" id="lbN">
+              <i class="bi bi-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="authModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Login</h5>
+            <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="loginForm" class="needs-validation" novalidate>
+            <div class="modal-body">
+              <label class="form-label" for="le">Email</label>
+              <input id="le" type="email" class="form-control mb-3" required>
+              <label class="form-label" for="lp">Password</label>
+              <input id="lp" type="password" minlength="6" class="form-control mb-3" required>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="rm">
+                <label class="form-check-label" for="rm">Remember me</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-green">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="toast" class="toast text-bg-success" role="status">
+        <div class="toast-body" id="toastB"></div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
